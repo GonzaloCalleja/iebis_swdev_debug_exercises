@@ -117,5 +117,23 @@ public static void settingTheBoard(int size) {
 In this case this code looks really simple. When the "d" reaches the value 1.0, the program should end, but it never does.
 
 #### Why does not appear a message indicating that "d is 1"?
-
+Because of the structure of doubles when you add 0.1 you're adding a bit more than 0.1, so you never get to 1.0, and the loop never stops. (because of decimals being negative poswer and some fractions are not accurate)
 #### How will you fix it?
+The way to fix it is to have the loop end when the difference in between the numbers is less than a certain decimal
+```java
+public class Main {
+
+    public static void main(String [] args) {
+        double d = 0.0;
+
+        while (d - 1.0 < 0.0000001) {
+            d += 0.10;
+        }
+
+        System.out.println("d is 1");
+    }
+}
+```
+OR
+
+Using the class BigDecimal Which allows you to round the number each time you add 0.1
