@@ -82,7 +82,33 @@ The boards can contain _Element_ objects, and since _Space_ and _Mine_ inherits 
 We have two boards of different size and place a different number of mines on each one. But in the second case it takes longer to place all the mines.
 
 #### Why placing less bombs takes longer in the second case?
+Because the amount of bombs represents a larger portion of the second board, and since the bombs are placed randomly, the free spaces in the second board run out earlier and the program is required to find another random position where to place the bomb.
 #### Knowing that usually there are going to be more bombs than spaces in the final boards, how would you change the method _minningTheBoard_ to be more efficient?
+The solution to this problem is to start with a board full of mines, and then assign random spaces to the board instead of random mines. This is because the number of mines is far larger than the number of spaces.
+
+So the code would look like this:
+```java
+public static void settingTheBoard(int size) {
+        // Setting the board
+        myBoard = new HashMap<>();
+
+        for(int i = 0; i < size; i++) {
+            myBoard.put(i, new Space());
+        }
+    }
+
+    public static void minningTheBoard(int numberMines) {
+        Random random = new Random();
+        while (numberMines > 0) {
+            Integer trial = new Integer(random.nextInt(myBoard.size()));
+
+            if (myBoard.get(trial) instanceof Space) {
+                myBoard.put(trial, new Mine());
+                numberMines--;
+            }
+        }
+    }
+```
 
 **Strategy**: Understand well what the code does. Use conditionals breakpoints.
 
