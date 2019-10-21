@@ -117,4 +117,5 @@ public static void settingTheBoard(int size) {
 In this case this code looks really simple. When the "d" reaches the value 1.0, the program should end, but it never does.
 
 #### Why does not appear a message indicating that "d is 1"?
+
 #### How will you fix it?
