@@ -14,17 +14,18 @@ public class Main {
         myBoard = new HashMap<>();
 
         for(int i = 0; i < size; i++) {
-            myBoard.put(i, new Space());
+            myBoard.put(i, new Mine());
         }
     }
 
     public static void minningTheBoard(int numberMines) {
+        numberMines = myBoard.size() - numberMines;
         Random random = new Random();
         while (numberMines > 0) {
             Integer trial = new Integer(random.nextInt(myBoard.size()));
 
-            if (myBoard.get(trial) instanceof Space) {
-                myBoard.put(trial, new Mine());
+            if (myBoard.get(trial) instanceof Mine) {
+                myBoard.put(trial, new Space());
                 numberMines--;
             }
         }
