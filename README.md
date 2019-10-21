@@ -24,8 +24,53 @@ In this code there is a class called WordAnalyzer that contains several methods 
 For some reason, the methods are not working properly, sometimes they return the correct value and others don't. You need to answer the next questions.
 
 #### Why the method _firstMultipleCharacter_ is returning "c" for the word _comprehensive_, when the correct answer should be "e"?
+In the find method, the position has to be increased by 1, so that it doesn't compare every letter with itself.
+```java
+private int find(char c, int pos)
+    {
+        for (int i = pos+1; i < word.length(); i++) //pos +1
+        {
+            if (word.charAt(i) == c)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+```
 #### Why the method _firstRepeatedCharacter_ is throwing an exception?
+Because since arrays start counting at 0, you have to subtract 1 from the array length.
+```java
+for (int i = 0; i < word.length() -1; i++) // you have to subtract 1 from the array length or you will get an exception
+        {
+            char ch = word.charAt(i);
+            if (ch == word.charAt(i + 1))
+                return ch;
+        }
+```
 #### Why the method _countGroupsRepeatedCharacters_ returns 3 in one case when it should be 4?
+i has to start at 0, and you have to check if it is the first letter of the array.
+```java
+public int countGroupsRepeatedCharacters()
+    {
+        int c = 0;
+        for (int i = 0; i < word.length() - 1; i++) // the array has to start at 0 not at 1
+        {
+            if (word.charAt(i) == word.charAt(i + 1)) // found a repetition
+            {
+                if(i!=0) { // checking if its the first letter
+                    if (word.charAt(i - 1) != word.charAt(i)) {  // it't the start
+                        c++;
+                    }
+                } else{
+                    c++;
+                }
+            }
+        }
+        return c;
+    }
+```
+
 
 **Strategy**: Place breakpoints before the methods are executed, step into them and see what happens.
 
