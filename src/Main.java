@@ -1,3 +1,5 @@
+package iebis_swdev_debug_exercises.src;
+
 public class Main {
 
     public static void main(String[] args) {
